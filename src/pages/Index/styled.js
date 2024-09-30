@@ -5,7 +5,7 @@ export const Content = styled.div`
     height: fit-content;
     width: fit-content;
     background-color: #f0f0f0;
-    margin: 20px auto;
+    margin: 20px;
     border: none;
     border-radius: 15px;
     display: flex;
