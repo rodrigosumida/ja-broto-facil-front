@@ -4,29 +4,29 @@ import { MaterialReactTable } from 'material-react-table';
 import { MRT_Localization_PT_BR } from 'material-react-table/locales/pt-BR';
 
 import {
-    Content,
+    BarraLateral,
+    BoxBranca,
+    BoxHistorico,
+    BoxHistoricoBaixo,
     ContainerDados,
+    ContainerHistorico,
     ContainerTabela,
-    ContainerDadosDado,
-    BoxDado,
-    NumeroGrande,
-    Texto,
-    BarraHorizontal,
-    ListaInfo,
-    ListaItem,
-    ContainerDadosRowDados,
-    ContainerDadosRowInfo,
-    BarraVertical,
-    ContainerAtualizacao,
-    Div,
-    ContainerGraficos,
-    ContainerAcoes,
-    BotaoHeader,
-    MensagemLEDInterno
+    Content,
+    Dado,
+    DadosAtuais,
+    DadosHistoricos,
+    DataHistorico,
+    Numero,
+    Titulo,
+    TituloDado,
+    TituloDados,
+    TituloHistorico,
+    TituloTabela
 } from "./styled";
 
 import api from '../../api/axios';
-import { LineChart } from '@mui/x-charts';
+
+import Sidebar from '../../components/Sidebar';
 
 const Index = () => {
     const [tableData, setTableData] = useState({});
@@ -45,7 +45,7 @@ const Index = () => {
     const [dataHoraGrafico, setDataHoraGrafico] = useState([]);
 
     const [ledInterno, setLedInterno] = useState(false);
-    const [mensagemLedInterno, setMensagemLedInterno] = useState('');
+    const [mensagemLedInterno, setMensagemLedInterno] = useState('Ligar LED Interno');
 
     const [mensagem, setMensagem] = useState('');
 
@@ -100,12 +100,12 @@ const Index = () => {
             {
                 accessorKey: 'temperatura',
                 header: 'Temperatura',
-                size: 70
+                size: 50
             },
             {
                 accessorKey: 'umidade',
                 header: 'Umidade',
-                size: 70
+                size: 50
             },
             {
                 accessorKey: 'data_hora',
@@ -118,146 +118,94 @@ const Index = () => {
         ], [],
     );
 
-    const handleLEDInternoClick = async () => {
-        if (!ledInterno) {
-            setMensagemLedInterno('Ligando LED...');
-            await fetch('http://192.168.67.251/led/on', {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-        } else {
-            setMensagemLedInterno('Desligando LED...');
-            await fetch('http://192.168.67.251/led/off', {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-        }
-
-        setMensagemLedInterno('');
-        setLedInterno(!ledInterno);
-    }
-
     return (
         <Content>
-            <ContainerAcoes>
-                <BotaoHeader onClick={handleLEDInternoClick}>{(ledInterno ? 'Desligar' : 'Ligar') + ' o LED Interno'}</BotaoHeader>
-                <MensagemLEDInterno>{mensagemLedInterno}</MensagemLEDInterno>
-            </ContainerAcoes>
-            <Div>
+            <BoxBranca>
+                <Sidebar />
+                <BarraLateral />
                 <ContainerDados>
-                    <ContainerDadosRowDados>
-                        <ContainerDadosDado>
-                            <BoxDado>
-                                <Texto>Temperatura</Texto>
-                                <NumeroGrande>{`${temperatura}º`}</NumeroGrande>
-                            </BoxDado>
-                        </ContainerDadosDado>
-                        <BarraVertical />
-                        <ContainerDadosDado>
-                            <BoxDado>
-                                <Texto>Umidade do ar</Texto>
-                                <NumeroGrande>{`${umidade}%`}</NumeroGrande>
-                            </BoxDado>
-                        </ContainerDadosDado>
-                    </ContainerDadosRowDados>
-                    <BarraHorizontal />
-                    <ContainerDadosRowInfo>
-                        <ContainerDadosDado>
-                            <ListaInfo>
-                                <ListaItem>{`Maior temperatura registrada: ${maxTemp.temperatura}ºC`}</ListaItem>
-                                <ListaItem>{`${new Date(maxTemp.data_hora).toLocaleString()}`}</ListaItem>
-                                <BarraHorizontal />
-                                <ListaItem>{`Maior temperatura registrada: ${minTemp.temperatura}ºC`}</ListaItem>
-                                <ListaItem>{`${new Date(minTemp.data_hora).toLocaleString()}`}</ListaItem>
-                            </ListaInfo>
-                        </ContainerDadosDado>
-                        <BarraVertical />
-                        <ContainerDadosDado>
-                            <ListaInfo>
-                                <ListaItem>{`Maior porcentagem registrada: ${maxUmi.umidade}%`}</ListaItem>
-                                <ListaItem>{`${new Date(maxUmi.data_hora).toLocaleString()}`}</ListaItem>
-                                <BarraHorizontal />
-                                <ListaItem>{`Maior porcentagem registrada: ${minUmi.umidade}%`}</ListaItem>
-                                <ListaItem>{`${new Date(minUmi.data_hora).toLocaleString()}`}</ListaItem>
-                            </ListaInfo>
-                        </ContainerDadosDado>
-                    </ContainerDadosRowInfo>
-                    <ContainerAtualizacao>
+                    <TituloDados>
+                        <Titulo>Dados atuais</Titulo>
                         {mensagem}
-                    </ContainerAtualizacao>
+                    </TituloDados>
+                    <DadosAtuais>
+                        <Dado>
+                            <TituloDado>Temperatura</TituloDado>
+                            <Numero>{temperatura}ºC</Numero>
+                        </Dado>
+                        <Dado>
+                            <TituloDado>Umidade</TituloDado>
+                            <Numero>{umidade}%</Numero>
+                        </Dado>
+                    </DadosAtuais>
+                    <DadosHistoricos>
+                        <ContainerHistorico>
+                            <BoxHistoricoBaixo>
+                                <BoxHistorico>
+                                    <TituloHistorico>Maior temperatura medida: {maxTemp.temperatura}ºC</TituloHistorico>
+                                    <DataHistorico>{`${new Date(maxTemp.data_hora).toLocaleString()}`}</DataHistorico>
+                                </BoxHistorico>
+                            </BoxHistoricoBaixo>
+                            <BoxHistoricoBaixo>
+                                <BoxHistorico>
+                                    <TituloHistorico>Menor temperatura medida: {minTemp.temperatura}ºC</TituloHistorico>
+                                    <DataHistorico>{`${new Date(minTemp.data_hora).toLocaleString()}`}</DataHistorico>
+                                </BoxHistorico>
+                            </BoxHistoricoBaixo>
+                        </ContainerHistorico>
+                        <ContainerHistorico>
+                            <BoxHistoricoBaixo>
+                                <BoxHistorico>
+                                    <TituloHistorico>Maior umidade medida: {maxUmi.umidade}%</TituloHistorico>
+                                    <DataHistorico>{`${new Date(maxUmi.data_hora).toLocaleString()}`}</DataHistorico>
+                                </BoxHistorico>
+                            </BoxHistoricoBaixo>
+                            <BoxHistoricoBaixo>
+                                <BoxHistorico>
+                                    <TituloHistorico>Menor umidade medida: {minUmi.umidade}%</TituloHistorico>
+                                    <DataHistorico>{`${new Date(minUmi.data_hora).toLocaleString()}`}</DataHistorico>
+                                </BoxHistorico>
+                            </BoxHistoricoBaixo>
+                        </ContainerHistorico>
+                    </DadosHistoricos>
                 </ContainerDados>
-                <ContainerTabela>
-                    <MaterialReactTable
-                        enableColumnActions={false}
-                        enableColumnFilters={false}
-                        enablePagination={true}
-                        enableSorting={false}
-                        enableDensityToggle={false}
-                        enableFullScreenToggle={false}
-                        enableHiding={false}
-                        enableFilters={false}
-                        initialState={{
-                            density: 'compact',
-                            pagination: {
-                                pageIndex: 0,
-                                pageSize: 10
-                            }
-                        }}
-                        muiTopToolbarProps={{ sx: { display: 'none' } }}
-                        muiTableHeadCellProps={{
-                            sx: {
-                                border: '1px solid rgba(81, 81, 81, .5)',
-                                fontStyle: 'normal',
-                                fontWeight: 'bold',
-                            },
-                        }}
-                        muiTableBodyCellProps={{
-                            sx: {
-                                border: '1px solid rgba(81, 81, 81, .5)',
-                            },
-                        }}
-                        columns={columns}
-                        data={tableData}
-                        localization={MRT_Localization_PT_BR}
-                    />
-                </ContainerTabela>
-            </Div>
-            <Div>
-                <ContainerGraficos>
-                    <LineChart
-                        xAxis={[{
-                            data: dataHoraGrafico,
-                            label: "Data e Hora",
-                            scaleType: "time",
-                            min: dataHoraGrafico[dataHoraGrafico.length - 1],
-                            max: dataHoraGrafico[0],
-                            tickInterval: 'auto'
-                        }]}
-                        series={[
-                            {
-                                data: umidadeGrafico,
-                                label: 'Umidade'
-                            },
-                            {
-                                data: temperaturaGrafico,
-                                label: 'Temperatura',
-                            }
-                        ]}
-                        tooltip={{
-                            enabled: true,
-                            shared: true,
-                        }}
-                        width={1000}
-                        height={300}
-                    />
-                </ContainerGraficos>
-            </Div>
+            </BoxBranca>
+            <ContainerTabela>
+                <TituloTabela>Tabela</TituloTabela>
+                <MaterialReactTable
+                    enableColumnActions={false}
+                    enableColumnFilters={false}
+                    enablePagination={true}
+                    enableSorting={false}
+                    enableDensityToggle={false}
+                    enableFullScreenToggle={false}
+                    enableHiding={false}
+                    enableFilters={false}
+                    initialState={{
+                        density: 'compact',
+                        pagination: {
+                            pageIndex: 0,
+                            pageSize: 10
+                        }
+                    }}
+                    muiTopToolbarProps={{ sx: { display: 'none' } }}
+                    muiTableHeadCellProps={{
+                        sx: {
+                            border: '1px solid rgba(81, 81, 81, .5)',
+                            fontStyle: 'normal',
+                            fontWeight: 'bold',
+                        },
+                    }}
+                    muiTableBodyCellProps={{
+                        sx: {
+                            border: '1px solid rgba(81, 81, 81, .5)',
+                        },
+                    }}
+                    columns={columns}
+                    data={tableData}
+                    localization={MRT_Localization_PT_BR}
+                />
+            </ContainerTabela>
         </Content>
     );
 };

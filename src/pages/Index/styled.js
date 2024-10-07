@@ -1,179 +1,131 @@
 import styled from 'styled-components';
 
 export const Content = styled.div`
-    background: white;
-    height: fit-content;
-    width: fit-content;
-    background-color: #f0f0f0;
-    margin: 20px;
+    background: #ebf5cf;
+    height: 100vh;
+    width: 95%;
+    margin: 40px auto;
     border: none;
     border-radius: 15px;
     display: flex;
-    padding: 0 25px;
     flex-wrap: wrap;
 `;
 
-export const Div = styled.div`
+export const BoxBranca = styled.div`
     display: flex;
-    width: 100%;
-    height: fit-content;
-`;
-
-export const ContainerDados = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto 0;
-    background-color: #f0f0f0;
-    height: 100%;
-    border-radius: 5px;
-    width: 65%;
-`;
-
-export const ContainerDadosRowDados = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    gap: 20px;
-    background-color: #fcfcfc;
-`;
-
-export const ContainerDadosRowInfo = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
-    background-color: #fcfcfc;
-    width: 100%;
-    gap: 10px;
-`;
-
-export const ContainerDadosDado = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    width: 60%;
     border-radius: 15px;
-    width: 50%;
+    background-color: white;
 `;
 
-export const BoxDado = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #fcfcfc;
-    padding: 7px;
-    border-radius: 5px;
-    text-align: center;
-    width: 85%;
+export const BarraLateral = styled.div`
+    width: 0.5px;
     height: 85%;
-`;
-
-export const NumeroGrande = styled.p`
-    font-size: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const Texto = styled.p`
-    font-size: 1.1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const BarraVertical = styled.div`
-    height: 130px;
-    width: 1px;
+    margin: auto 0;
     background-color: #999;
 `;
 
-export const BarraHorizontal = styled.div`
-    height: 1px;
-    width: 95%;
-    background-color: #444;
-    margin: 0 auto;
+export const ContainerDados = styled.div`
+    width: 75%;
+    border-radius: 15px;
 `;
 
-export const ListaInfo = styled.ul`
+export const TituloDados = styled.div`
+    height: 15%;
+    padding: 0 30px;
+    border-top-right-radius: 15px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const Titulo = styled.h1`
+    font-size: 1.7rem;
+`;
+
+export const DadosAtuais = styled.div`
+    height: 35%;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+`;
+
+export const Dado = styled.div`
+    width: 45%;
+    height: 100%;
+    background-color: #EEE;
+    border-radius: 25px;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+`;
+
+export const TituloDado = styled.h4`
+    font-weight: 400;
+    font-size: 1.15rem;
+`;
+
+export const Numero = styled.span`
+    font-size: 4.75rem;
+`;
+
+export const DadosHistoricos = styled.div`
+    height: 50%;
+    padding: 10px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+`;
+
+export const ContainerHistorico = styled.div`
+    height: 100%;
+    width: 50%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const BoxHistoricoBaixo = styled.div`
+    width: 90%;
+    height: 90px;
+    margin: 10px 0;
+    background-color: #7a8a56;
+    border-radius: 10px;
+    box-shadow: 20px 10px 17px -7px rgba(219,219,219,0.7);
+    display: flex;
+    justify-content: end;
+`;
+
+export const BoxHistorico = styled.div`
+    width: 97%;
+    height: 90px;
+    padding: 10px 20px;
+    background-color: #EEE;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 `;
 
-export const ListaItem = styled.li`
-    margin: 10px 0;
-    font-size: 1.2rem;
-    text-align: center;
+export const TituloHistorico = styled.h5`
+    font-size: 0.92rem;
+`;
+
+export const DataHistorico = styled.p`
+    font-size: 0.85rem;
 `;
 
 export const ContainerTabela = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0px 20px 20px;
-    height: 100%;
+    width: 39.5%;
     border-radius: 15px;
-    width: 35%;
-`;
-
-export const ContainerAtualizacao = styled.div`
-    display: flex;
-    text-align: start;
-    height: fit-content;
-    background-color: #888;
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-`;
-
-export const ContainerGraficos = styled.div`
-    height: 300px;
-    width: fit-content;
-    margin-bottom: 20px;
-    background-color: #fcfcfc;
-    border-radius: 5px;
-    margin: 15px auto;
-`;
-
-export const ContainerAcoes = styled.div`
-    height: 70px;
-    width: 100%;
-    background-color: #888;
     padding: 15px;
-    display: flex;
 `;
 
-export const BotaoHeader = styled.div`
-    height: 100%;
-    width: fit-content;
-    color: white;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    background-color: #333;
-    display: flex;
-    padding: 0 20px;
-    border-radius: 4px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-`;
-
-export const MensagemLEDInterno = styled.span`
-    width: fit-content;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    color: #222;
-    display: flex;
-    margin: 0 15px;
+export const TituloTabela = styled.h4`
+    font-size: 1.4rem;
+    margin: 20px 10px;
 `;

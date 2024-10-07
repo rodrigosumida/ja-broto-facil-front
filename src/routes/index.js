@@ -2,13 +2,16 @@ import React from "react";
 import { Route, Routes } from 'react-router-dom';
 
 import Index from '../pages/Index';
-import Teste from '../pages/Teste';
+import Graficos from '../pages/Graficos';
+
+import IndexOld from '../pages/IndexOld';
 
 export default function AppRoutes() {
     return (
         <Routes>
             <Route path='/' element={<Index />} />
-            <Route path='/teste' element={<Teste />} />
+            <Route path='/graficos' element={<Graficos />} />
+            <Route path='/old' element={<IndexOld />} />
         </Routes>
     )
 }
