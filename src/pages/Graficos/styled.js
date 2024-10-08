@@ -24,3 +24,17 @@ export const BarraLateral = styled.div`
     margin: auto 0;
     background-color: #999;
 `;
+
+export const ContainerGraficos = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+`;
+
+export const TituloGrafico = styled.div`
+    font-size: 1.7rem;
+`;

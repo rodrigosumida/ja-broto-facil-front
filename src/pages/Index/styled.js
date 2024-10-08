@@ -118,14 +118,3 @@ export const TituloHistorico = styled.h5`
 export const DataHistorico = styled.p`
     font-size: 0.85rem;
 `;
-
-export const ContainerTabela = styled.div`
-    width: 39.5%;
-    border-radius: 15px;
-    padding: 15px;
-`;
-
-export const TituloTabela = styled.h4`
-    font-size: 1.4rem;
-    margin: 20px 10px;
-`;
