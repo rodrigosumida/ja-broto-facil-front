@@ -29,6 +29,9 @@ const Index = () => {
 
     const [temperatura, setTemperatura] = useState(0.0);
     const [umidade, setUmidade] = useState(0.0);
+    const [distancia, setDistancia] = useState(0.0);
+
+    const [led, setLed] = useState(false);
 
     const [maxTemp, setMaxTemp] = useState({});
     const [minTemp, setMinTemp] = useState({});
@@ -53,15 +56,49 @@ const Index = () => {
     const getData = async () => {
         await api.get('/relatorio/listar')
         .then(res => {
+            verifyDistance(res.data);
             updateMinMax(res.data);
 
             setTemperatura(res.data[0].temperatura);
             setUmidade(res.data[0].umidade);
+            setDistancia(res.data[0].distancia);
 
             setTableData(res.data);
             setMensagem(`Última atualização ${new Date(res.data[0].data_hora).toLocaleString()}`);
         })
         .catch(err => console.log(err))
+    }
+
+    const verifyDistance = async (data) => {
+        if (data[0].distancia < 5.0 && !led) {
+            try {
+                await fetch('http://192.168.171.251/led/on', {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                setLed(true);
+                console.log('LED Ligado!');
+            } catch (err) {
+                console.error(err);
+            }
+        } else if (data[0].distancia > 5.0 && led) {
+            try {
+                await fetch('http://192.168.171.251/led/off', {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                setLed(false);
+                console.log('LED Desligado!');
+            } catch (err) {
+                console.error(err);
+            }
+        }
     }
 
     useEffect(() => {

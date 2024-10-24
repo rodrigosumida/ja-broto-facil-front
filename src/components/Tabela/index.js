@@ -19,6 +19,17 @@ const Tabela = (tableData) => {
                 size: 50
             },
             {
+                accessorKey: 'distancia',
+                header: 'Distância',
+                size: 50,
+                Cell: ({ row }) => {
+                    if (row.original.distancia) {
+                        return row.original.distancia + ' CM';
+                    }
+                    return '-';
+                }
+            },
+            {
                 accessorKey: 'data_hora',
                 header: 'Data e hora',
                 size: 180,
