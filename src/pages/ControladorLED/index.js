@@ -28,7 +28,7 @@ const ControladorLED = () => {
     const handleLEDExternoClick = async () => {
         setTextoBotao('Enviando...');
         if (value >= 0 && value <= 255) {
-            await fetch(`http://192.168.211.251/led_externo/pwm/${value}`, {
+            await fetch(`http://192.168.202.251/led_externo/pwm/${value}`, {
                 method: 'GET',
                 mode: 'cors',
                 headers: {

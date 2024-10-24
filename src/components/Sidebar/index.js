@@ -28,7 +28,7 @@ const Sidebar = () => {
     const handleLEDInternoClick = async () => {
         if (!ledInterno) {
             setMensagemLedInterno('Ligando LED...');
-            await fetch('http://192.168.211.251/led/on', {
+            await fetch('http://192.168.202.251/led/on', {
                 method: 'GET',
                 mode: 'cors',
                 headers: {
@@ -38,7 +38,7 @@ const Sidebar = () => {
             setMensagemLedInterno('Desligar LED Interno');
         } else {
             setMensagemLedInterno('Desligando LED...');
-            await fetch('http://192.168.211.251/led/off', {
+            await fetch('http://192.168.202.251/led/off', {
                 method: 'GET',
                 mode: 'cors',
                 headers: {
