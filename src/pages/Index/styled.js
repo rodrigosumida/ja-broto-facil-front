@@ -39,6 +39,10 @@ export const TituloDados = styled.div`
     flex-direction: column;
 `;
 
+export const Informacoes = styled.span`
+    font-size: 0.9rem;
+`;
+
 export const Titulo = styled.h1`
     font-size: 1.7rem;
 `;

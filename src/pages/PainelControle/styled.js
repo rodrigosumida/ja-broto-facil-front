@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Content = styled.div`
-    background: white;
+    background: #ebf5cf;
     height: 100vh;
     width: 95%;
     margin: 40px auto;
@@ -36,7 +36,7 @@ export const ContainerControlador = styled.div`
 
 export const Titulo = styled.h1`
     font-size: 1.7rem;
-    padding: 30px;
+    padding: 30px 0;
 `;
 
 export const InfoTextos = styled.div`
@@ -64,13 +64,13 @@ export const ContainerBotao = styled.div`
 export const BotaoEnviar = styled.div`
     padding: 10px 15px;
     display: flex;
-    margin: 5px;
-    background-color: #ebf5cf;
-    color: #333;
+    margin: 15px 0;
+    background-color: #6f8d1c;
+    color: #fff;
     justify-content: center;
     align-items: center;
     width: fit-content;
-    border-radius: 2px;
+    border-radius: 5px;
 
     &:hover {
         cursor: pointer;

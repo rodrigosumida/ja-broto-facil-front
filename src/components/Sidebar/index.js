@@ -47,10 +47,10 @@ const Sidebar = () => {
                             Gráficos
                         </ItemLista>
                     </Link>
-                    <Link to={'/controlador'}>
+                    <Link to={'/painel-de-controle'}>
                         <ItemLista>
                             <SettingsIcon sx={{ marginLeft: 1.5, marginRight: 1.5, height: 20 }} />
-                            Controlador do LED
+                            Painel de Controle
                         </ItemLista>
                     </Link>
                 </ListaItens>
